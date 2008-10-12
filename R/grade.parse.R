@@ -1,5 +1,35 @@
 ###########################################################################
 #
+# grade.warn -- issue a 'warning' of the supplied argument if quiet is false
+#
+###########################################################################
+grade.warn <- function(ans, quiet=TRUE) {
+  if (quiet == FALSE)
+    warning(ans)
+}
+###########################################################################
+#
+# grade.safechunk -- takes a chunk of text and says if it's safe or not
+#                    to eval.  The goal is to not eval things that would
+#                    be function calls or assignments.  I.e. try to contain
+#                    the students answers 
+#
+###########################################################################
+grade.safechunk <- function(chunk, quiet=TRUE) {
+  if (is.character(chunk) == FALSE) {
+    warning("non character passed to grade.safechunk")
+    return(FALSE)
+  }
+  check.expr <- "[],[()><=]"
+  check.res <- regexpr(check.expr, chunk)
+  if (check.res[1] != -1) {
+    grade.warn("An element passed to grade.parsechunk contained a forbidden character", quiet)
+    return(FALSE)
+  }
+  return(TRUE)
+}
+###########################################################################
+#
 # grade.parse -- takes a student's answer string, and returns either
 #                NULL -- input not valid
 #                a scalar -- input valid, no brackets
@@ -13,8 +43,7 @@ grade.parse <- function(ans, useeval=TRUE, usena=FALSE, useinf=FALSE,
   if (is.null(ans)) return(NULL)
   if (is.character(ans) == FALSE) {
     if (is.vector(ans) == FALSE) {
-      if (quiet == FALSE)
-        warning("non vector non character passed to grade.parse")
+      grade.warn("non vector non character passed to grade.parse", quiet)
       return(NULL)
     }
     for(x in ans) {
@@ -46,21 +75,15 @@ grade.parsechunk <- function(ans, useeval=TRUE, usena=FALSE, useinf=FALSE,
   if (is.character(ans)) {
     # refuse to eval any strings with these characters
     # this prevents assignments and function calls
-    check.expr <- "[],[()><=]"
-    check.res <- regexpr(check.expr, ans)
-    if (check.res[1] != -1) {
-      if (quiet == FALSE)
-        warning("An element passed to grade.parsechunk contained a forbidden character")
+    if (grade.safechunk(ans, quiet) == FALSE) {
       return(NULL)
     }
-
     #################################################################
     # we are ready to evaluate this string,
     if (useeval == TRUE) {
       try.res <- try(cur <- eval(parse(text=ans)), silent=TRUE)
       if (class(try.res) == "try-error") {
-        if (quiet == FALSE)
-          warning("An element passed to grade.parsechunk failed to eval")
+        grade.warn("An element passed to grade.parsechunk failed to eval", quiet)
         return(NULL)
       }
     } else {
@@ -127,8 +150,7 @@ grade.parseset <- function(ans, useeval=TRUE, usena=FALSE, useinf=FALSE,
   # Getting here means that it was not a character passed, so we just need to
   # check to see if the elements are okay or not
   if (is.vector(ans) == FALSE) {
-    if (quiet == FALSE)
-      warning("non vector non character passed to grade.parseset")
+    grade.warn("non vector non character passed to grade.parseset", quiet)
     return(NULL)
   }
   for (x in ans) {

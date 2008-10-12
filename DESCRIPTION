@@ -1,11 +1,11 @@
 Package: grade
-Version: 0.1
-Date: 2008-04-19
-Title: Grade
+Version: 0.15
+Date: 2008-10-12
+Title: Provides functions for matching student-answers to teacher answers for a variety of data types.
 Author: Leif Johnson <leif.t.johnson@gmail.com>
 Maintainer: Leif Johnson <leif.t.johnson@gmail.com>
 URL: http://www.stat.umn.edu/~leif/software/grade/
 Depends: R (>= 2.4.1)
 Description: Binary Grading functions for R.
-License: GPL-2 http://www.r-project.org/Licenses/GPL-2
+License: GPL-2 
 

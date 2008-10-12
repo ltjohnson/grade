@@ -10,4 +10,5 @@ export(grade.parse)
 export(grade.parsechunk)
 export(grade.parseset)
 export(grade.set)
+export(grade.truefalse)
 
