@@ -1,6 +1,6 @@
 Package: grade
-Version: 0.15
-Date: 2008-10-12
+Version: 0.2
+Date: 2009-2-20
 Title: Provides functions for matching student-answers to teacher answers for a variety of data types.
 Author: Leif Johnson <leif.t.johnson@gmail.com>
 Maintainer: Leif Johnson <leif.t.johnson@gmail.com>

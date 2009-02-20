@@ -11,16 +11,16 @@ Binary Grading functions for R.
 \details{
 \tabular{ll}{
 Package: \tab grade\cr
-Version: \tab 0.1\cr
-Date: \tab 2008-04-19\cr
+Version: \tab 0.2\cr
+Date: \tab 2009-02-20\cr
 Title: \tab Grade\cr
 Author: \tab Leif Johnson <leif.t.johnson@gmail.com>\cr
 Maintainer: \tab Leif Johnson <leif.t.johnson@gmail.com>\cr
 URL: \tab http://www.stat.umn.edu/~leif/software/grade/\cr
 Depends: \tab R (>= 2.4.1)\cr
 Description: \tab Binary Grading functions for R.\cr
-License: \tab GPL-2 http://www.r-project.org/Licenses/GPL-2\cr
-Packaged: \tab Wed Jul 30 13:53:59 2008; leif\cr
+License: \tab GPL-2 \cr
+Packaged: \tab Fri Feb 20 10:28:59 2009; leif\cr
 }
 
 Index:
@@ -36,6 +36,7 @@ Index:
 \link{grade.parsechunk}
 \link{grade.parseset}
 \link{grade.set}               Grade Sets
+\link{grade.truefalse}         True/False answers
 }
 }
 \author{
