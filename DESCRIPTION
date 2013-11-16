@@ -1,5 +1,5 @@
 Package: grade
-Version: 0.2
+Version: 0.2-1
 Date: 2013-11-15
 Title: Binary Grading functions for R.
 Author: Leif Johnson <leif.t.johnson@gmail.com>
